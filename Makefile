@@ -38,7 +38,7 @@ all: $(DOCNAME).pdf
 # missing file reference and interactively asking you for an alternative.
 
 $(DOCNAME).pdf: $(DOCNAME).tex
-	latexmk -pdf $(LATEX_BACKEND) -use-make $(DOCNAME).tex
+	latexmk -pdf -time $(LATEX_BACKEND) -use-make $(DOCNAME).tex
 
 watch: $(DOCNAME).tex
 	latexmk -pvc -pdf $(LATEX_BACKEND) -use-make $(DOCNAME).tex
