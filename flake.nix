@@ -24,7 +24,31 @@
         {
           devenv-up = self.devShells.${system}.default.config.procfileScript;
           tex = pkgs.texlive.combine {
-            inherit (pkgs.texlive) scheme-basic latex-bin latexmk;
+            inherit (pkgs.texlive)
+              scheme-medium
+              latex-bin
+              latexmk
+              # CPAN packages
+              bookmark
+              enumitem
+              environ
+              etoolbox
+              fontawesome5
+              fontspec
+              hyperref
+              ifmtarg
+              parskip
+              ragged2e
+              roboto
+              setspace
+              sourcesanspro
+              tcolorbox
+              tikzfill
+              unicode-math
+              xcolor
+              xifthen
+              xstring
+              ;
           };
           document =
             pkgs.stdenvNoCC.mkDerivation {
@@ -50,13 +74,15 @@
               modules = [
                 {
                   # https://devenv.sh/reference/options/
-                  packages = [ tex ];
+                  packages = [
+                    tex
+                  ];
 
                   enterShell = ''
-                    hello
+                    echo "Hello, devenv"
                   '';
 
-                  processes.hello.exec = "hello";
+                  processes.latexmk-watch.exec = "make watch";
                 }
               ];
             };

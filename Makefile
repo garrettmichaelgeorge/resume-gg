@@ -3,7 +3,8 @@
 # https://github.com/dnadales/nix-latex-template/blob/3acf1e24186cfa7af069072c6223c263d364bc79/Makefile
 
 DOCNAME = document
-PDFLATEX = "pdflatex -interaction=nonstopmode -synctex=1"
+# LATEX_BACKEND = -xelatex="xelatex -interaction=nonstopmode -synctex=1"
+LATEX_BACKEND = -xelatex
 
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
@@ -37,10 +38,10 @@ all: $(DOCNAME).pdf
 # missing file reference and interactively asking you for an alternative.
 
 $(DOCNAME).pdf: $(DOCNAME).tex
-	latexmk -pdf -pdflatex=$(PDFLATEX) -use-make $(DOCNAME).tex
+	latexmk -pdf $(LATEX_BACKEND) -use-make $(DOCNAME).tex
 
 watch: $(DOCNAME).tex
-	latexmk -pvc -pdf -pdflatex=$(PDFLATEX) -use-make $(DOCNAME).tex
+	latexmk -pvc -pdf $(LATEX_BACKEND) -use-make $(DOCNAME).tex
 
 clean:
 	latexmk -CA
