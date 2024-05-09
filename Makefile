@@ -3,7 +3,6 @@
 # https://github.com/dnadales/nix-latex-template/blob/3acf1e24186cfa7af069072c6223c263d364bc79/Makefile
 
 DOCNAME = document
-# LATEX_BACKEND = -xelatex="xelatex -interaction=nonstopmode -synctex=1"
 LATEX_BACKEND = -xelatex
 
 # You want latexmk to *always* run, because make does not have all the info.
@@ -31,9 +30,8 @@ all: $(DOCNAME).pdf
 # MAIN LATEXMK RULE
 
 # -pdf tells latexmk to generate PDF directly (instead of DVI).
-# -pdflatex="" tells latexmk to call a specific backend with specific options.
+# -xelatex tells latexmk to call a specific backend with specific options.
 # -use-make tells latexmk to call make for generating missing files.
-
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
@@ -41,7 +39,7 @@ $(DOCNAME).pdf: $(DOCNAME).tex
 	latexmk -pdf -time $(LATEX_BACKEND) -interaction=nonstopmode -use-make $(DOCNAME).tex
 
 watch: $(DOCNAME).tex
-	latexmk -pvc -pdf $(LATEX_BACKEND) -interaction=nonstopmode -use-make $(DOCNAME).tex
+	latexmk -pvc -pdf $(LATEX_BACKEND) -interaction=nonstopmode -use-make -synctex=1 $(DOCNAME).tex
 
 clean:
 	latexmk -CA
