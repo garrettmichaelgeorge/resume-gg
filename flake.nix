@@ -16,25 +16,56 @@
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
       pkgsFor = system: nixpkgs.legacyPackages.${system};
-    in {
-      packages = forEachSystem (system:
-        let pkgs = pkgsFor system;
-        in {
-          devenv-up = self.devShells.${system}.default.config.procfileScript;
-          tex = pkgs.callPackage ./tex.nix { };
-          # tex = import ./tex.nix { inherit pkgs; };
-          document = pkgs.callPackage ./document.nix {
-            inherit pkgs self;
-            tex = self.packages.${system}.tex;
-          };
-          default = self.packages.${system}.document;
-        });
+    in
+    {
+      packages = forEachSystem
+        (system:
+          let pkgs = pkgsFor system;
+          in
+          {
+            devenv-up = self.devShells.${system}.default.config.procfileScript;
+            # tex = pkgs.callPackage ./tex.nix { }; tex = pkgs.callPackage ./tex.nix { };
+            # tex = import ./tex.nix { inherit pkgs; };
+            tex = pkgs.texlive.combine {
+              inherit (pkgs.texlive)
+                scheme-medium
+                latex-bin
+                latexmk
+                # CTAN packages
+                bookmark
+                enumitem
+                environ
+                etoolbox
+                fontawesome5
+                fontspec
+                hyperref
+                ifmtarg
+                parskip
+                ragged2e
+                roboto
+                setspace
+                sourcesanspro
+                tcolorbox
+                tikzfill
+                unicode-math
+                xcolor
+                xifthen
+                xstring
+                ;
+            };
+            document = pkgs.callPackage ./document.nix {
+              inherit pkgs self;
+              tex = self.packages.${system}.tex;
+            };
+            default = self.packages.${system}.document;
+          });
 
       devShells = forEachSystem (system:
         let
           pkgs = pkgsFor system;
           tex = self.packages.${system}.tex;
-        in {
+        in
+        {
           default =
             pkgs.callPackage ./devenv.nix { inherit devenv inputs tex; };
         });
