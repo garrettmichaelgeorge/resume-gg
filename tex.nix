@@ -8,4 +8,5 @@ let
       parskip ragged2e roboto setspace sourcesanspro tcolorbox tikzfill
       unicode-math xcolor xifthen xstring;
   };
-in pkgs.texlive.combine texlivePkgs // cpanPkgs
+in
+pkgs.texlive.combine texlivePkgs // cpanPkgs

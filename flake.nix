@@ -15,13 +15,14 @@
   outputs = { self, nixpkgs, devenv, systems, ... }@inputs:
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
-      pkgsForSystem = system: nixpkgs.legacyPackages.${system};
+      pkgsFor = system: nixpkgs.legacyPackages.${system};
     in {
       packages = forEachSystem (system:
-        let pkgs = pkgsForSystem system;
+        let pkgs = pkgsFor system;
         in {
           devenv-up = self.devShells.${system}.default.config.procfileScript;
           tex = pkgs.callPackage ./tex.nix { };
+          # tex = import ./tex.nix { inherit pkgs; };
           document = pkgs.callPackage ./document.nix {
             inherit pkgs self;
             tex = self.packages.${system}.tex;
@@ -31,7 +32,7 @@
 
       devShells = forEachSystem (system:
         let
-          pkgs = pkgsForSystem system;
+          pkgs = pkgsFor system;
           tex = self.packages.${system}.tex;
         in {
           default =
