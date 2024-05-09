@@ -28,7 +28,7 @@ devenv.lib.mkShell {
       editorconfig-checker.enable = true;
       markdownlint.enable = true;
       mixed-line-endings.enable = true;
-      nixfmt.enable = true;
+      # nixfmt.enable = true;
       lychee.enable = true;
       ripsecrets.enable = true;
       # statix.enable = true;
