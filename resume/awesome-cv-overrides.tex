@@ -1,0 +1,166 @@
+% These are overrides for the awesome-cv template
+
+\newlist{cvitems}{itemize}{10}
+\setlist[cvitems]{label= ,leftmargin=0em}
+% \setlist[cvitems]{label*=\arabic*.}
+
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-red}
+% Uncomment if you would like to specify your own color
+% \definecolor{awesome}{HTML}{3E6D9C}
+
+% Colors for text
+% Uncomment if you would like to specify your own color
+\definecolor{black}{HTML}{000000}
+
+\definecolor{darktext}{HTML}{444444}
+% \definecolor{text}{HTML}{000000}
+\colorlet{text}{darktext}
+\definecolor{graytext}{HTML}{5D5D5D}
+\definecolor{lighttext}{HTML}{999999}
+% \definecolor{sectiondivider}{HTML}{5D5D5D}
+
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{true}
+
+% Override spacing
+% \renewcommand{\acvSectionTopSkip}{3mm}
+\renewcommand{\acvSectionContentTopSkip}{0.5em}
+
+% If you would like to change the social information separator from a pipe (|) to something else
+% \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+% \renewcommand{\headerpositionstyle}[1]{{\fontsize{16}{1em}\headerfontlight\scshape\color{awesome} #1}}
+
+\setmainfont{Avenir Next}[
+	ItalicFont = {Avenir Next Italic},
+	BoldFont = {Avenir Next Bold},
+	Numbers=Lowercase,
+	Ligatures=TeX,
+	Kerning=On
+]
+
+\newfontfamily\avenirnext{Avenir Next}[
+	ItalicFont = {Avenir Next Italic},
+	BoldFont = {Avenir Next Bold},
+	Numbers=Lowercase,
+	Ligatures=TeX,
+	Kerning=On
+]
+
+\newfontfamily\avenirnextcondensed{Avenir Next Condensed}[
+	ItalicFont = {Avenir Next Condensed Italic},
+	BoldFont = {Avenir Next Condensed Demi Bold},
+	Numbers=Lowercase,
+	Ligatures=TeX,
+	Kerning=On
+]
+
+\newfontfamily\avenirnextultralight{Avenir Next Ultra Light}[
+	ItalicFont = {Avenir Next Ultra Light Italic},
+	Numbers=Lowercase,
+	Ligatures=TeX,
+	Kerning=On
+]
+
+\renewcommand*{\headerfont}{\avenirnext}
+\renewcommand*{\headerfontlight}{\avenirnextultralight}
+\renewcommand*{\footerfont}{\avenirnext}
+\renewcommand*{\bodyfont}{\avenirnext}
+\renewcommand*{\bodyfontlight}{\avenirnext}
+
+\newcommand{\spacedcaps}[1]{%
+	\addfontfeature{LetterSpace=5.0} \MakeUppercase{#1}
+}
+
+\newcommand{\spacedsc}[1]{%
+	\addfontfeature{LetterSpace=5.0,Letters=UppercaseSmallCaps} \scshape #1
+}
+
+
+\renewenvironment{cvskills}{}{}
+
+\renewcommand{\cvskill}[2]{%
+	\textit{#1:} #2 \\
+}
+
+%-------------------------------------------------------------------------------
+%                Override configuration for styles
+%-------------------------------------------------------------------------------
+
+% Uncomment and change styles to override their defaults
+
+% Configure styles for each CV elements
+% For fundamental structures
+\renewcommand{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em} \headerfont \bfseries \color{text} #1}}
+\renewcommand{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em} \headerfont \bfseries \color{text} #1 \vspace{0.1em}}}
+\renewcommand{\headerpositionstyle}[1]{{\fontsize{12pt}{1em} \bodyfont \color{text} \spacedcaps{#1}}}
+% \renewcommand{\headeraddressstyle}[1]{{\fontsize{9pt}{1em} \headerfont\itshape\color{lighttext} #1}}
+\renewcommand{\headersocialstyle}[1]{{\fontsize{9pt}{1em} \headerfont \color{text} #1}}
+% \renewcommand{\headerquotestyle}[1]{{\fontsize{9pt}{1em} \bodyfont\itshape\color{darktext} #1}}
+\renewcommand{\footerstyle}[1]{{\fontsize{8pt}{1em} \footerfont \color{lighttext} #1}}
+\renewcommand{\sectionstyle}[1]{{\fontsize{16pt}{1em} \headerfont \color{text} \textit{#1}}}
+% \renewcommand{\subsectionstyle}[1]{{\fontsize{12pt}{1em} \bodyfont\scshape\textcolor{text}{#1}}}
+\renewcommand{\paragraphstyle}{\fontsize{10pt}{1em} \bodyfont \color{text}}
+
+% For elements of entry
+\renewcommand{\entrytitlestyle}[1]{{\fontsize{11pt}{0.5em} \bodyfont \bfseries \color{text} #1}}
+\renewcommand{\entrypositionstyle}[1]{{\fontsize{9pt}{1em} \bodyfont \color{text} \spacedcaps{#1} \vspace{-0.2em}}}
+\renewcommand{\entrydatestyle}[1]{{\fontsize{9pt}{1em} \bodyfont \color{text} #1}}
+\renewcommand{\entrylocationstyle}[1]{{\fontsize{9pt}{1em} \bodyfont \color{text} #1}}
+\renewcommand{\descriptionstyle}[1]{{\fontsize{10pt}{1em} \bodyfont \color{text} #1}}
+
+% For elements of subentry
+% \renewcommand{\subentrytitlestyle}[1]{{\fontsize{8pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
+% \renewcommand{\subentrypositionstyle}[1]{{\fontsize{7pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+% \renewcommand{\subentrydatestyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+% \renewcommand{\subentrylocationstyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+\renewcommand{\subdescriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+
+% For elements of honor
+% \renewcommand{\honortitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+% \renewcommand{\honorpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+% \renewcommand{\honordatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+% \renewcommand{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+
+% For elements of skill
+\renewcommand{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont \color{text} \emph{#1}}}
+\renewcommand{\skillsetstyle}[1]{{\fontsize{10pt}{1em}\bodyfont \color{text} #1}}
+
+% For elements of the cover letter
+% \renewcommand{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+% \renewcommand{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+% \renewcommand{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+% \renewcommand{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
+% \renewcommand{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+% \renewcommand{\lettertextstyle}{\fontsize{10pt}{1.4em}\bodyfontlight\upshape\color{graytext}}
+% \renewcommand{\letternamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+% \renewcommand{\letterenclosurestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\slshape\color{lighttext} #1}}
+
+
+% Redefine an entry of cv information
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
+\renewcommand*{\cventry}[5]{%
+	% \vspace{-2.0mm}
+	\setlength\tabcolsep{0pt}
+	% \setlength{\extrarowheight}{0pt}
+
+	\begingroup
+	\raggedright
+	\ifempty{#2#3}
+	{%
+		\entrypositionstyle{#1} \\
+		\entrydatestyle{#4} \\
+	}{%
+		\entrytitlestyle{#1} \\
+		\entrypositionstyle{#2} \\
+		\entrydatestyle{#4} | \entrylocationstyle{#3} \\
+		\vspace{1em}
+	}
+	\ifstrempty{#5}
+	{}
+	{\descriptionstyle{#5}}
+	\endgroup
+}
