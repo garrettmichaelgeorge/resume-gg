@@ -4,13 +4,13 @@ devenv.lib.mkShell {
   inherit inputs pkgs;
   modules = [{
     # https://devenv.sh/reference/options/
-    packages = [ tex ];
+    packages = [ tex pkgs.pandoc pkgs.lynx pkgs.poppler_utils pkgs.fswatch ];
 
     cachix.pull = [ "resume-gg" "pre-commit-hooks" ];
     cachix.push = "resume-gg";
 
     enterShell = ''
-      echo "Hello, devenv"
+      echo "Hello, $(hostname -s)"
     '';
 
     processes.latexmk-watch.exec = "make watch";
