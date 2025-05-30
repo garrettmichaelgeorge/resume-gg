@@ -5,6 +5,12 @@
 DOCNAME = document
 LATEX_BACKEND = -xelatex
 
+OUTPUT_DIR = out
+TODAY = $(shell date "+%Y%m%d")
+DOCUMENT_AUTHOR_KABAB_CASE = garrett-george
+OUTPUT_PREFIX = resume-$(DOCUMENT_AUTHOR_KABAB_CASE)
+OUTPUT_PATH = $(OUTPUT_DIR)/$(OUTPUT_PREFIX)-$(TODAY).pdf
+
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
@@ -13,6 +19,12 @@ LATEX_BACKEND = -xelatex
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
 all: $(DOCNAME).pdf
+
+# Usage: `make today` outputs a document in out/ stamped with today's date
+today: $(OUTPUT_PATH)
+
+$(OUTPUT_PATH): $(DOCNAME).pdf
+	cp $< $@
 
 # CUSTOM BUILD RULES
 
